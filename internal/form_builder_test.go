@@ -1,16 +1,15 @@
 package openai //nolint:testpackage // testing private field
 
 import (
-	"github.com/sashabaranov/go-openai/internal/test/checks"
-
 	"bytes"
 	"errors"
 	"os"
 	"testing"
+
+	"github.com/yilan-vaas/go-openai/internal/test/checks"
 )
 
-type failingWriter struct {
-}
+type failingWriter struct{}
 
 var errMockFailingWriterError = errors.New("mock writer failed")
 

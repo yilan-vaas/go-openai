@@ -1,11 +1,11 @@
 package test
 
 import (
-	"github.com/sashabaranov/go-openai/internal/test/checks"
-
 	"net/http"
 	"os"
 	"testing"
+
+	"github.com/yilan-vaas/go-openai/internal/test/checks"
 )
 
 // CreateTestFile creates a fake file with "hello" as the content.

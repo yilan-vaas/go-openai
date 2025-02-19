@@ -2,14 +2,13 @@ package openai_test
 
 import (
 	"context"
-
-	openai "github.com/sashabaranov/go-openai"
-	"github.com/sashabaranov/go-openai/internal/test/checks"
-
 	"encoding/json"
 	"fmt"
 	"net/http"
 	"testing"
+
+	openai "github.com/yilan-vaas/go-openai"
+	"github.com/yilan-vaas/go-openai/internal/test/checks"
 )
 
 // TestAssistant Tests the assistant endpoint of the API using the mocked server.
