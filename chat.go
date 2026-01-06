@@ -309,6 +309,8 @@ type ChatCompletionRequest struct {
 	Store bool `json:"store,omitempty"`
 	// Controls effort on reasoning for reasoning models. It can be set to "low", "medium", or "high".
 	ReasoningEffort string `json:"reasoning_effort,omitempty"`
+	// 火山引擎深度思考控制参数
+	Thinking *Thinking `json:"thinking,omitempty"`
 	// Metadata to store with the completion.
 	Metadata map[string]string `json:"metadata,omitempty"`
 	// Configuration for a predicted output.
@@ -333,6 +335,10 @@ type ChatCompletionRequest struct {
 	SafetyIdentifier string `json:"safety_identifier,omitempty"`
 	// Embedded struct for non-OpenAI extensions
 	ChatCompletionRequestExtensions
+}
+
+type Thinking struct {
+	Type string `json:"type,omitempty"`
 }
 
 type StreamOptions struct {
