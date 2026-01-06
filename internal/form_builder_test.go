@@ -1,15 +1,14 @@
 package openai //nolint:testpackage // testing private field
 
 import (
+	"bytes"
 	"errors"
 	"io"
-
-	"github.com/sashabaranov/go-openai/internal/test/checks"
-
-	"bytes"
 	"os"
 	"strings"
 	"testing"
+
+	"github.com/yilan-vaas/go-openai/internal/test/checks"
 )
 
 type mockFormBuilder struct {
@@ -53,8 +52,7 @@ func TestCloseMethod(t *testing.T) {
 	})
 }
 
-type failingWriter struct {
-}
+type failingWriter struct{}
 
 var errMockFailingWriterError = errors.New("mock writer failed")
 
@@ -88,8 +86,7 @@ func TestFormBuilderWithClosedFile(t *testing.T) {
 	checks.ErrorIs(t, err, os.ErrClosed, "formbuilder should return error if file is closed")
 }
 
-type failingReader struct {
-}
+type failingReader struct{}
 
 var errMockFailingReaderError = errors.New("mock reader failed")
 

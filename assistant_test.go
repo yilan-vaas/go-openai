@@ -2,14 +2,13 @@ package openai_test
 
 import (
 	"context"
-
-	openai "github.com/sashabaranov/go-openai"
-	"github.com/sashabaranov/go-openai/internal/test/checks"
-
 	"encoding/json"
 	"fmt"
 	"net/http"
 	"testing"
+
+	openai "github.com/yilan-vaas/go-openai"
+	"github.com/yilan-vaas/go-openai/internal/test/checks"
 )
 
 // TestAssistant Tests the assistant endpoint of the API using the mocked server.
@@ -17,7 +16,7 @@ func TestAssistant(t *testing.T) {
 	assistantID := "asst_abc123"
 	assistantName := "Ambrogio"
 	assistantDescription := "Ambrogio is a friendly assistant."
-	assistantInstructions := `You are a personal math tutor. 
+	assistantInstructions := `You are a personal math tutor.
 When asked a question, write and run Python code to answer the question.`
 	assistantFileID := "file-wB6RM6wHdA49HfS2DJ9fEyrH"
 	limit := 20
@@ -260,7 +259,7 @@ func TestAzureAssistant(t *testing.T) {
 	assistantID := "asst_abc123"
 	assistantName := "Ambrogio"
 	assistantDescription := "Ambrogio is a friendly assistant."
-	assistantInstructions := `You are a personal math tutor. 
+	assistantInstructions := `You are a personal math tutor.
 When asked a question, write and run Python code to answer the question.`
 	assistantFileID := "file-wB6RM6wHdA49HfS2DJ9fEyrH"
 	limit := 20

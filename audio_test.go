@@ -11,9 +11,9 @@ import (
 	"path/filepath"
 	"testing"
 
-	utils "github.com/sashabaranov/go-openai/internal"
-	"github.com/sashabaranov/go-openai/internal/test"
-	"github.com/sashabaranov/go-openai/internal/test/checks"
+	utils "github.com/yilan-vaas/go-openai/internal"
+	"github.com/yilan-vaas/go-openai/internal/test"
+	"github.com/yilan-vaas/go-openai/internal/test/checks"
 )
 
 func TestAudioWithFailingFormBuilder(t *testing.T) {
@@ -178,7 +178,7 @@ func TestCallAudioAPINewRequestError(t *testing.T) {
 	// Create a real temp file so multipart form succeeds.
 	tmp := t.TempDir()
 	path := filepath.Join(tmp, "file.mp3")
-	if err := os.WriteFile(path, []byte("content"), 0644); err != nil {
+	if err := os.WriteFile(path, []byte("content"), 0o644); err != nil {
 		t.Fatalf("failed to write temp file: %v", err)
 	}
 
@@ -200,7 +200,7 @@ func TestCallAudioAPISendRequestErrorJSON(t *testing.T) {
 	// Create a real temp file so multipart form succeeds.
 	tmp := t.TempDir()
 	path := filepath.Join(tmp, "file.mp3")
-	if err := os.WriteFile(path, []byte("content"), 0644); err != nil {
+	if err := os.WriteFile(path, []byte("content"), 0o644); err != nil {
 		t.Fatalf("failed to write temp file: %v", err)
 	}
 
@@ -222,7 +222,7 @@ func TestCallAudioAPISendRequestErrorText(t *testing.T) {
 	client := NewClient("test-token")
 	tmp := t.TempDir()
 	path := filepath.Join(tmp, "file.mp3")
-	if err := os.WriteFile(path, []byte("content"), 0644); err != nil {
+	if err := os.WriteFile(path, []byte("content"), 0o644); err != nil {
 		t.Fatalf("failed to write temp file: %v", err)
 	}
 

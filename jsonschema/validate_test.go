@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/sashabaranov/go-openai/jsonschema"
+	"github.com/yilan-vaas/go-openai/jsonschema"
 )
 
 func Test_Validate(t *testing.T) {
@@ -29,17 +29,25 @@ func Test_Validate(t *testing.T) {
 		{"", args{data: nil, schema: jsonschema.Definition{Type: jsonschema.Null}}, true},
 		{"", args{data: 0, schema: jsonschema.Definition{Type: jsonschema.Null}}, false},
 		// array
-		{"", args{data: []any{"a", "b", "c"}, schema: jsonschema.Definition{
-			Type: jsonschema.Array, Items: &jsonschema.Definition{Type: jsonschema.String}},
+		{"", args{
+			data: []any{"a", "b", "c"}, schema: jsonschema.Definition{
+				Type: jsonschema.Array, Items: &jsonschema.Definition{Type: jsonschema.String},
+			},
 		}, true},
-		{"", args{data: []any{1, 2, 3}, schema: jsonschema.Definition{
-			Type: jsonschema.Array, Items: &jsonschema.Definition{Type: jsonschema.String}},
+		{"", args{
+			data: []any{1, 2, 3}, schema: jsonschema.Definition{
+				Type: jsonschema.Array, Items: &jsonschema.Definition{Type: jsonschema.String},
+			},
 		}, false},
-		{"", args{data: []any{1, 2, 3}, schema: jsonschema.Definition{
-			Type: jsonschema.Array, Items: &jsonschema.Definition{Type: jsonschema.Integer}},
+		{"", args{
+			data: []any{1, 2, 3}, schema: jsonschema.Definition{
+				Type: jsonschema.Array, Items: &jsonschema.Definition{Type: jsonschema.Integer},
+			},
 		}, true},
-		{"", args{data: []any{1, 2, 3.4}, schema: jsonschema.Definition{
-			Type: jsonschema.Array, Items: &jsonschema.Definition{Type: jsonschema.Integer}},
+		{"", args{
+			data: []any{1, 2, 3.4}, schema: jsonschema.Definition{
+				Type: jsonschema.Array, Items: &jsonschema.Definition{Type: jsonschema.Integer},
+			},
 		}, false},
 		// object
 		{"", args{data: map[string]any{
@@ -48,13 +56,14 @@ func Test_Validate(t *testing.T) {
 			"number":  123.4,
 			"boolean": false,
 			"array":   []any{1, 2, 3},
-		}, schema: jsonschema.Definition{Type: jsonschema.Object, Properties: map[string]jsonschema.Definition{
-			"string":  {Type: jsonschema.String},
-			"integer": {Type: jsonschema.Integer},
-			"number":  {Type: jsonschema.Number},
-			"boolean": {Type: jsonschema.Boolean},
-			"array":   {Type: jsonschema.Array, Items: &jsonschema.Definition{Type: jsonschema.Number}},
-		},
+		}, schema: jsonschema.Definition{
+			Type: jsonschema.Object, Properties: map[string]jsonschema.Definition{
+				"string":  {Type: jsonschema.String},
+				"integer": {Type: jsonschema.Integer},
+				"number":  {Type: jsonschema.Number},
+				"boolean": {Type: jsonschema.Boolean},
+				"array":   {Type: jsonschema.Array, Items: &jsonschema.Definition{Type: jsonschema.Number}},
+			},
 			Required: []string{"string"},
 		}}, true},
 		{"", args{data: map[string]any{
@@ -62,13 +71,14 @@ func Test_Validate(t *testing.T) {
 			"number":  123.4,
 			"boolean": false,
 			"array":   []any{1, 2, 3},
-		}, schema: jsonschema.Definition{Type: jsonschema.Object, Properties: map[string]jsonschema.Definition{
-			"string":  {Type: jsonschema.String},
-			"integer": {Type: jsonschema.Integer},
-			"number":  {Type: jsonschema.Number},
-			"boolean": {Type: jsonschema.Boolean},
-			"array":   {Type: jsonschema.Array, Items: &jsonschema.Definition{Type: jsonschema.Number}},
-		},
+		}, schema: jsonschema.Definition{
+			Type: jsonschema.Object, Properties: map[string]jsonschema.Definition{
+				"string":  {Type: jsonschema.String},
+				"integer": {Type: jsonschema.Integer},
+				"number":  {Type: jsonschema.Number},
+				"boolean": {Type: jsonschema.Boolean},
+				"array":   {Type: jsonschema.Array, Items: &jsonschema.Definition{Type: jsonschema.Number}},
+			},
 			Required: []string{"string"},
 		}}, false},
 		{
@@ -115,7 +125,8 @@ func Test_Validate(t *testing.T) {
 						},
 					},
 				},
-			}}, true},
+			}}, true,
+		},
 		{
 			"test enum invalid value", args{data: map[string]any{
 				"person": map[string]any{
@@ -160,7 +171,8 @@ func Test_Validate(t *testing.T) {
 						},
 					},
 				},
-			}}, false},
+			}}, false,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

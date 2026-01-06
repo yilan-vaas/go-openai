@@ -7,8 +7,8 @@ import (
 	"os"
 	"testing"
 
-	utils "github.com/sashabaranov/go-openai/internal"
-	"github.com/sashabaranov/go-openai/internal/test/checks"
+	utils "github.com/yilan-vaas/go-openai/internal"
+	"github.com/yilan-vaas/go-openai/internal/test/checks"
 )
 
 func TestFileBytesUploadWithFailingFormBuilder(t *testing.T) {
@@ -121,6 +121,7 @@ func TestFileUploadWithNonExistentPath(t *testing.T) {
 	_, err := client.CreateFile(ctx, req)
 	checks.ErrorIs(t, err, os.ErrNotExist, "CreateFile should return error if file does not exist")
 }
+
 func TestCreateFileRequestBuilderFailure(t *testing.T) {
 	config := DefaultConfig("")
 	config.BaseURL = ""

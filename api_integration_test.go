@@ -10,9 +10,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/sashabaranov/go-openai"
-	"github.com/sashabaranov/go-openai/internal/test/checks"
-	"github.com/sashabaranov/go-openai/jsonschema"
+	"github.com/yilan-vaas/go-openai"
+	"github.com/yilan-vaas/go-openai/internal/test/checks"
+	"github.com/yilan-vaas/go-openai/jsonschema"
 )
 
 func TestAPI(t *testing.T) {
@@ -303,7 +303,7 @@ func TestChatCompletionStructuredOutputsFunctionCalling(t *testing.T) {
 		},
 	)
 	checks.NoError(t, err, "CreateChatCompletion (use structured outputs response) returned error")
-	var result = make(map[string]string)
+	result := make(map[string]string)
 	err = json.Unmarshal([]byte(resp.Choices[0].Message.ToolCalls[0].Function.Arguments), &result)
 	checks.NoError(t, err, "CreateChatCompletion (use structured outputs response) unmarshal error")
 	for _, key := range []string{"PascalCase", "CamelCase", "KebabCase", "SnakeCase"} {

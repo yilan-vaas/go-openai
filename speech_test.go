@@ -11,9 +11,9 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/sashabaranov/go-openai"
-	"github.com/sashabaranov/go-openai/internal/test"
-	"github.com/sashabaranov/go-openai/internal/test/checks"
+	"github.com/yilan-vaas/go-openai"
+	"github.com/yilan-vaas/go-openai/internal/test"
+	"github.com/yilan-vaas/go-openai/internal/test/checks"
 )
 
 func TestSpeechIntegration(t *testing.T) {
@@ -90,7 +90,7 @@ func TestSpeechIntegration(t *testing.T) {
 		checks.NoError(t, err, "ReadAll error")
 
 		// save buf to file as mp3
-		err = os.WriteFile("test.mp3", buf, 0644)
+		err = os.WriteFile("test.mp3", buf, 0o644)
 		checks.NoError(t, err, "Create error")
 	})
 }
